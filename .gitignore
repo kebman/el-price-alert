@@ -1,20 +1,22 @@
 # Python
 __pycache__/
 *.py[cod]
-*.pyo
 *.pyd
 *.egg-info/
+
+# Envs
 .venv/
 venv/
-.env
-
-# Project outputs
-data/logs/
-data/outputs/
-
-# Local-only config pointer
 .venv_path
 
-# OS cruft
+# IDE/OS
+.vscode/
+.idea/
 .DS_Store
 Thumbs.db
+
+# Data
+data/logs/*
+data/outputs/*
+!data/logs/.gitkeep
+!data/outputs/.gitkeep

@@ -1,16 +1,36 @@
 # el-price-alert
 
-Fetches **tomorrow’s** day-ahead electricity prices (HvaKosterStrømmen API), converts to local time (Europe/Oslo), includes 25% VAT (optional), and tells you the cheap hours. Saves CSV/JSON.
+⚡ Cross-platform Python tool that alerts you when Nordic electricity prices drop below your chosen threshold.
 
-- **Rule:** If any hour ≤ `threshold` (NOK/kWh incl. VAT) → list those hours and mark the 3 cheapest.  
-  Else → list hours below the day’s median and still mark the 3 cheapest.  
-  Always shows min/median/avg/max.
-- **Grid tariff:** intentionally excluded.
+[![License: MIT](https://img.shields.io/badge/License-MIT-green.svg)](LICENSE)
+
+---
+
+## What it does
+- Fetches **tomorrow’s** day-ahead electricity prices (via HvaKosterStrømmen API).
+- Converts to local time (Europe/Oslo).
+- Includes 25% VAT (configurable).
+- Lists cheap hours and highlights the 3 cheapest.
+- Always shows min/median/avg/max.
+- Excludes grid tariff (by design).
+
+Example output:
+```
+INFO: Starting el-price-alert for 2025-08-18, area NO1, threshold 0.40 kr/kWh  
+Date: 2025-08-18 Area: NO1  
+≤ 0.40 kr/kWh: 13:00 0.38 kr/kWh  
+Cheapest 3: 13:00 0.38 kr/kWh, 14:00 0.46 kr/kWh, 12:00 0.71 kr/kWh  
+Stats: min 0.38 median 1.49 avg 1.45 max 2.55  
+INFO: Notification sent: ⚡ El Price Alert - Cheap hours 2025-08-18: 13:00
+
+```
+
+---
 
 ## Quick start
 
 ```bash
-git clone https://github.com/<your-username>/el-price-alert.git
+git clone https://github.com/kebman/el-price-alert.git
 cd el-price-alert
 
 python -m venv .venv
@@ -21,38 +41,36 @@ source .venv/bin/activate
 
 pip install -r requirements.txt
 cp config.example.json config.json
-# edit config.json if you want (area, threshold, check_time)
 python run_alert.py               # uses tomorrow by default
 # or:
 python run_alert.py --date=YYYY-MM-DD
 ```
 
+---
+
 ## Scheduling
 
-## Windows (Task Scheduler)
+### Windows (Task Scheduler)
 
 ```powershell
 # from repo root
-.\scripts\setup_venv.ps1         # optional helper to keep venv outside sync folders
+.\scripts\setup_venv.ps1         # optional helper
 .\scripts\register_task.ps1      # uses check_time in config.json (default 15:00)
 # remove later:
 .\scripts\unregister_task.ps1
 ```
 
-## macOS/Linux (cron)
+### macOS/Linux (cron)
 
 ```bash
 0 15 * * * /usr/bin/env bash -lc 'cd <repo> && . .venv/bin/activate && python run_alert.py'
 ```
 
-## Output
-
-- CSV/JSON in `data/outputs/` (auto-created on first run).
-- Optional desktop notification (Windows via `plyer` or PowerShell fallback).
+---
 
 ## Config
 
-`config.example.json` (copy to `config.json`):
+Edit `config.json`:
 
 ```json
 {
@@ -66,7 +84,15 @@ python run_alert.py --date=YYYY-MM-DD
 }
 ```
 
-## Notes
+---
 
-- Handles 24/25 hours on DST days.
-- Prices come from HvaKosterStrømmen; times are converted to Europe/Oslo.
+## Output
+
+- CSV/JSON in `data/outputs/` (auto-created).
+- Optional desktop notification (Windows, macOS, Linux).
+
+---
+
+## License
+
+MIT — see [LICENSE](https://chatgpt.com/c/LICENSE) file.

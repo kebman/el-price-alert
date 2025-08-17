@@ -95,4 +95,4 @@ Edit `config.json`:
 
 ## License
 
-MIT — see [LICENSE](https://chatgpt.com/c/LICENSE) file.
+MIT — see [LICENSE](LICENSE) file.

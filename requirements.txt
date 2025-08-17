@@ -1,0 +1,14 @@
+# Core dependencies
+requests>=2.32.0
+certifi>=2024.7.4
+urllib3>=2.2.2
+tzdata>=2023.3
+
+# For Python < 3.9 timezone support (automatically installed if needed)
+pytz>=2023.3; python_version < "3.9"
+
+# For Windows notifications (optional - falls back to PowerShell if not available)
+plyer>=2.1.0
+
+# For Windows Event Log support (optional - only on Windows)
+pywin32>=306; sys_platform == "win32"

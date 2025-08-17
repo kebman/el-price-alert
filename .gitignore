@@ -1,0 +1,20 @@
+# Python
+__pycache__/
+*.py[cod]
+*.pyo
+*.pyd
+*.egg-info/
+.venv/
+venv/
+.env
+
+# Project outputs
+data/logs/
+data/outputs/
+
+# Local-only config pointer
+.venv_path
+
+# OS cruft
+.DS_Store
+Thumbs.db

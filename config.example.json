@@ -1,0 +1,9 @@
+{
+  "area": "NO1",
+  "threshold": 0.40,
+  "include_vat": true,
+  "check_time": "15:00",
+  "retries": 3,
+  "retry_interval_min": 20,
+  "show_notifications": true
+}
